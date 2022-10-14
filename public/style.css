@@ -1,0 +1,242 @@
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 17px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #42f551;
+  }
+  
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(13px);
+    -ms-transform: translateX(13px);
+    transform: translateX(13px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 17px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  .thermometer{
+    border: 1px solid darkgray;
+    text-align: center;
+    grid-area:teplomer;
+    display: block;
+   position: relative;
+}
+.bulb{
+ display:inline-block;
+ border:2px solid #222;
+ width:20px;
+ height:20px;
+ border-radius:50%;
+ position: absolute;
+ left: 0px;
+ bottom: 0px;
+ border-top: 2px solid #fff;
+ box-shadow: 0px 0px 0px 2px #fff inset;
+ background:red;
+}
+.stem{
+ display: inline-block;
+   border: 2px solid #222;
+   width: 12px;
+   height: 80px;
+   border-radius: 0px 0px 20px 20px;
+   border-top: 2px solid transparent;
+   position: absolute;
+   bottom: 18px;
+   left: 4px;
+   box-shadow: 0px 0px 0px 2px #fff inset;
+   transform: rotate(180deg);
+   z-index: 10;
+     padding-bottom: 3px;
+}
+.stem-perct{
+   width: 8px;
+   background: red;
+   display: block;
+   margin: 0px auto;
+   border-radius: 10px;
+}
+.bulb:after{
+   content: '';
+   height: 10px;
+   width: 8px;
+   background: inherit;
+   position: absolute;
+   left: 6px;
+   bottom: 13px;
+   z-index: 12;
+}
+h2{
+  padding: 10px;
+  text-align: center;
+}
+header{
+  background-color: #222;
+  color: #ccc;
+  height:50px;
+}
+img{
+  float: left;
+  background-color: #ccc;
+  border: 3px #ccc solid;
+}
+body{
+  background-color: #ccc;
+}
+#LEDSvetla{
+  padding: 5px;
+  width: 500px;
+  margin: 10px auto;
+  border: 1px #222 solid;
+  min-height: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+    gap: 3px 3px;
+}
+.nadpis{
+  width: 500px;
+  margin: 15px auto -10px;
+  font-weight: bold;
+}
+.lightSwitch{
+  border: darkgrey 1px solid;
+  padding: 5px;
+}
+.lightSwitch label {
+ cursor: pointer;
+}
+.lightSwitch:hover{
+  background-color: lightyellow;
+}
+.lightSwitch label:nth-child(2){
+  display:inline-block;
+  width: calc(100% - 35px);
+ }
+#RGBled{
+  display: grid;
+  padding: 5px;
+  width: 500px;
+  margin: 10px auto;
+  border: 1px #222 solid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "colorPicker colorPicker teplomer";
+  gap: 5px 5px;
+  min-height: 25px;
+  text-align: center;
+}
+#colorPicker{
+  border: 1px solid darkgray;
+  padding: 5px;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 30px 30px 30px 30px;
+  grid-template-rows: 30px 30px 30px 30px;
+    gap: 5px 5px;
+  grid-area: colorPicker;
+}
+.color{
+  cursor: pointer;
+}
+.color input{
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+#teplomer{
+  position: absolute;
+  top: 120px;
+  left: calc(50% - 12px);
+  margin: 10px auto;
+  text-align: center;
+}
+#LEDOsvetleni{
+  display: grid;
+  padding: 5px;
+  width: 500px;
+  margin: 10px auto;
+  border: 1px #222 solid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 5px 5px;
+  min-height: 25px;
+}
+input[type="number"]{
+  width: 30px;
+}
+.nmrUpDown{
+ border: 1px darkgray solid;
+ padding : 5px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+}
+#garage{
+  display: grid;
+  padding: 5px;
+  width: 500px;
+  margin: 10px auto;
+  grid-template-columns: 30px 1fr 30px;
+  grid-template-rows: 1fr;
+  gap: 5px 5px;
+  border: 1px #222 solid;
+  min-height: 25px;
+}
+.ovladaniGaraze{
+  cursor: pointer;
+  text-align: center;
+  margin: auto;
+  font-weight: bold;
+}
+input[type=range]{
+  width: 100%;
+}

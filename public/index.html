@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="viewport"content="width=device-width, initial-scale=1">
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+      <header><img src="house.svg" alt="Domeček" width="50px"/><h2>SmartHome vytvořený pomocí IOT</h2></header>
+      <div class="nadpis">Ovládání LED</div>
+      <div id="LEDSvetla">
+        <div class="lightSwitch">
+            <label class="switch">
+              <input type="checkbox" id="predsin"/>
+              <span class="slider round">     </span>
+          </label>
+          <label for="predsin">Předsíň</label>
+        </div>
+        <div class="lightSwitch">	    
+            <label class="switch">
+              <input type="checkbox" id="garaz"/>
+              <span class="slider round">    </span>
+          </label>
+          <label for="garaz">Garáž</label>
+        </div>
+        <div class="lightSwitch">	    
+            <label class="switch">
+		          <input type="checkbox" id="kuchyn"/>
+		          <span class="slider round">    </span>
+	          </label>
+	          <label for="kuchyn">Kuchyň</label></div>
+        <div class="lightSwitch">	    
+            <label class="switch">
+		          <input type="checkbox" id="obyvak"/>
+		          <span class="slider round">    </span>
+	          </label>
+	          <label for="obyvak">Obývák</label></div>
+        <div class="lightSwitch">	    
+            <label class="switch">
+		          <input type="checkbox" id="jidelna"/>
+		          <span class="slider round">    </span>
+	          </label>
+	          <label for="jidelna">Jídelní kout</label>
+        </div>
+        <div class="lightSwitch">	    
+            <label class="switch">
+		          <input type="checkbox" id="koupelna"/>
+		          <span class="slider round">    </span>
+	          </label>
+	          <label for="koupelna">Koupelna</label></div>
+      <div class="lightSwitch">      
+            <label class="switch">
+              <input type="checkbox" id="pokojM"/>
+              <span class="slider round">    </span>
+            </label>
+      <label for="pokojM">Marečkův pokoj</label>
+      </div>
+      <div class="lightSwitch">      <label class="switch">
+        <input type="checkbox" id="koupelnaH"/>
+        <span class="slider round">    </span>
+      </label>
+      <label for="koupelnaH">Koupelna nahoře</label></div>
+      <div class="lightSwitch">      <label class="switch">
+        <input type="checkbox" id="loznice"/>
+        <span class="slider round">    </span>
+      </label>
+      <label for="loznice">Ložnice</label></div>
+    </div>
+  <div class="nadpis">RGB LED</div>
+  <div id="RGBled">
+    <script>
+      var barevnyKod;                
+      function barva(data){
+      var val = data;
+      const r = parseInt(val.substr(1,2), 16);
+      const g = parseInt(val.substr(3,2), 16);
+      const b = parseInt(val.substr(5,2), 16);
+      console.log(`red: ${r}, green: ${g}, blue: ${b}`);
+      socket.emit('rgbLED',{red:r, green:g, blue:b});
+      }
+    </script>
+    <div id="colorPicker">
+      <div class="color" onclick="barva('#FF0000')" style="background: red ;border:red; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#EE82EE')" style="background: violet ; border:violet; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#0000FF')" style="background: blue; border:blue; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#800080')" style="background: purple ; border:purple; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#8B0000')" style="background: darkred ; border:darkred; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#F08080')" style="background: lightcoral ; border:lightcoral; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#40E0D0')" style="background: turquoise ; border:turquoise; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#000080')" style="background: navy ; border:navy; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#FFA500')" style="background: orange ; border:orange; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#FFFF00')" style="background: yellow ; border:yellow; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#90EE90')" style="background: lightgreen ; border:lightgreen; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#008000')" style="background: green ; border:green; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#40E0D0')" style="background: turquoise ; border:turquoise; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#FFFFFF')" style="background: white ; border:white; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#663399')" style="background: rebeccapurple ; border:rebeccapurple; border-radius: 50%;"><input type="radio" name="barva"></div>
+      <div class="color" onclick="barva('#A52A2A')" style="background: brown ; border:brown; border-radius: 50%;"><input type="radio" name="barva"></div>
+    </div>
+    <div class="thermometer">
+      <div id="teplomer">
+      <div class="stem">
+        <div class="stem-perct" id="percent"></div>
+      </div>
+      <div class="bulb" id="out"></div>
+      </div>
+   </div>
+  </div>
+  <div class="nadpis">Ovládání venkovního osvětlení</div>
+      <div id="LEDOsvetleni">
+        <div class="lightSwitch">
+        <label class="switch">
+          <input type="checkbox" id="pasek"/>
+          <span class="slider round">    </span>
+        </label>
+        <label for="pasek">Rozsvítit</label>
+      </div>
+      <div class="nmrUpDown">
+        <input type="number" id="vanoce" placeholder="čas"/>s Vánoce 
+        </div>
+        <div class="nmrUpDown"><input type="number" id="alarm" placeholder="čas"/>s Alarm </div>
+      </div>
+      <div class="nadpis">Ovládání garáže</div>
+      <div id="garage">
+        <script>
+          function garaz(hodnota){
+            document.getElementById("garageRange").value = hodnota;
+          }
+        </script>
+        <div class="ovladaniGaraze" onclick="garaz(0)">←</div>
+        <input type="range" id="garageRange" min="0" max="32768" value="0">
+        <div class="ovladaniGaraze" onclick="garaz(32768)">→</div>
+      </div>
+  </div>
+      <script src="./client-dist/socket.io.js"></script>
+        <script>
+            const socket = io("ws://192.168.25.1:8081", {transports: ['websocket']});
+            window.addEventListener("load", function(){
+                socket.emit('giveStatus');
+                socket.on('getStatus', function(koupelnaData, jidelnaData, obyvakData, kuchynData, predsinData, garazData, pokojMData, koupelnaHData, lozniceData){
+                  koupelnaFlick.checked = koupelnaData;
+                  jidelnaFlick.checked = jidelnaData;
+                  obyvakFlick.checked = obyvakData;
+                  kuchynFlick.checked = kuchynData;
+                  predsinFlick.checked = predsinData;
+                  garazFlick.checked = garazData;
+                  pokojMFlick.checked = pokojMData;
+                  koupelnaHFlick.checked = koupelnaHData;
+                  lozniceFlick.checked = lozniceData;
+                });
+                socket.on('temp', function(data){
+                  var v = data;
+                  console.log(v);
+                  var out = document.getElementById('percent');
+                  out.style.height = v+'%';
+                });
+                var predsinFlick = document.getElementById("predsin");
+                predsinFlick.addEventListener("change", function(){
+                  socket.emit('predsin', Number(predsinFlick.checked));
+                });
+		            var garazFlick = document.getElementById("garaz");
+                garazFlick.addEventListener("change", function(){
+                  socket.emit('garaz', Number(garazFlick.checked));
+                });
+                var kuchynFlick = document.getElementById("kuchyn");
+                kuchynFlick.addEventListener("change", function(){
+                  socket.emit('kuchyn', Number(kuchynFlick.checked));
+                });
+                var obyvakFlick = document.getElementById("obyvak");
+                obyvakFlick.addEventListener("change", function(){
+                  socket.emit('obyvak', Number(obyvakFlick.checked));
+                });
+                var jidelnaFlick = document.getElementById("jidelna");
+                jidelnaFlick.addEventListener("change", function(){
+                  socket.emit('jidelna', Number(jidelnaFlick.checked));
+                });
+                var koupelnaFlick = document.getElementById("koupelna");
+                koupelnaFlick.addEventListener("change", function(){
+                  socket.emit('koupelna', Number(koupelnaFlick.checked));
+                });
+                var pokojMFlick = document.getElementById("pokojM");
+                pokojMFlick.addEventListener("change", function(){
+                  socket.emit('pokojM', Number(pokojMFlick.checked));
+                });
+                var koupelnaHFlick = document.getElementById("koupelnaH");
+                koupelnaHFlick.addEventListener("change", function(){
+                  socket.emit('koupelnaH', Number(koupelnaHFlick.checked));
+                });
+                var lozniceFlick = document.getElementById("loznice");
+                lozniceFlick.addEventListener("change", function(){
+                  socket.emit('loznice', Number(lozniceFlick.checked));
+                });
+                var pasekFlick = document.getElementById("pasek");
+                pasekFlick.addEventListener("change", function(){
+                  var val = pasekFlick.value; 
+                  socket.emit('pasek', val);
+                });
+                var vanocniOsvetleni = document.getElementById("vanoce");
+                vanocniOsvetleni.addEventListener("change", function(){
+                  var duration = vanocniOsvetleni.value;
+                  if(duration != 0){
+                    vanocniOsvetleni.value = 0
+                    socket.emit('vanoce', duration);
+                  }
+                });
+                var alarmOsvetleni = document.getElementById("alarm");
+                alarmOsvetleni.addEventListener("change", function(){
+                  var duration = alarmOsvetleni.value;
+                  if(duration != 0){
+                    alarmOsvetleni.value = 0;
+                    socket.emit('alarm', duration);
+                  }
+                });
+                var garazPosun = document.getElementById("garageRange");
+                garazPosun.addEventListener("change", function(){
+                  socket.emit('garazMotor', garazPosun.value);
+                });
+            });
+        </script>
+    </body>
+</html>
